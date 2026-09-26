@@ -1,6 +1,16 @@
 [build]
   command = "vite build"
   publish = "dist/client"
+
+[[plugins]]
+  package = "netlify-plugin-a11y"
+
+  [plugins.inputs]
+    # Version 0.0.12 does not support a timeout input and its fixed Pa11y
+    # timeout fails this SSR site's post-build check. Keep the UI-installed
+    # plugin overridden here without scheduling any paths.
+    checkPaths = []
+
 [dev]
   command = "npm run dev"
   targetPort = 3000
